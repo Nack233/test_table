@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomBookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [RoomBookingController::class, 'index'])->name('home');
+Route::post('/bookings/{booking}/approve', 'RoomBookingController@approve');
+Route::post('/bookings/{booking}/cancel', 'RoomBookingController@cancel');
+Route::get('/bookings/{booking}', 'RoomBookingController@show');
