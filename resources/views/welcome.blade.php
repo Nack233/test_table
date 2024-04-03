@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="image" href="C:\xampp\htdocs\test_table\public\storage">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-..." crossorigin="anonymous" />
     <style>
         th,
         td {
@@ -24,14 +26,13 @@
         }
 
         .table-container {
-            border: 1px solid #dee2e6;
+            border: 1px solid #fcfdff;
             border-radius: 5px;
             padding: 20px;
-            margin-top: 20px;
+            margin-top: 10px;
+            /* เปลี่ยนจากเดิม 20px เป็น 10px */
             max-height: 500px;
-            /* กำหนดความสูงสูงสุดของคอนเทนเนอร์ */
             overflow-y: auto;
-            /* เพิ่มแถบเลื่อนด้านข้างเมื่อเนื้อหาเกินความสูงที่กำหนด */
         }
 
         table {
@@ -56,7 +57,7 @@
 
             thead tr {
                 height: 60px;
-                background: #c7c7c3;
+                background: #dededd;
                 font-size: 16px;
             }
 
@@ -153,11 +154,17 @@
 
         // body style
 
+        html,
         body {
-            background: #9BC86A;
+            background: #ff6347;
+            /* สีอิฐสีอ่อน */
+            /* หรือ background: #008000; สำหรับสีเขียว */
             font: 400 14px 'Calibri', 'Arial';
-            padding: 20px;
+            padding: 0;
+            height: 100%;
+            margin: 0;
         }
+
 
         blockquote {
             color: white;
@@ -174,56 +181,111 @@
         .swal-actions-styled button {
             margin-left: 10px;
         }
+
+        //sidebar
+        .sidebar {
+            padding: 20px;
+        }
+
+        .sidebar .nav-link {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #333;
+        }
+
+        .sidebar .nav-link:hover,
+        .sidebar .nav-link.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+
+        //button
+
     </style>
 </head>
 
-<body>
-    <div class="container mt-5">
-        <div class="header d-flex align-items-center">
-            <img src="{{ asset('storage/images/checkbox1.png') }}" alt="Logo" style="max-height: 40px; margin-right: 10px;">
-            <h2 class="mb-0">อนุมัติคำขอจองห้อง</h2>
+<body style="background-color: #e3e2e2;">
+    <div class="row m-0" style="height: 100vh;">
+        <div class="col-md-3 p-0">
+            <div class="bg-light sidebar h-100">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">
+                            <i class="fas fa-home"></i> หน้าหลัก
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-calendar-alt"></i> จองห้องประชุม
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-check-circle"></i> อนุมัติการจอง
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fas fa-cog"></i> ตั้งค่า
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>ชื่อผู้จอง</th>
-                        <th>ชื่อห้อง</th>
-                        <th>วันที่เข้าใช้</th>
-                        <th>วันที่สิ้นสุด</th>
-                        <th>เวลาเข้าใช้</th>
-                        <th>เวลาสิ้นสุด</th>
-                        <th>อนุมัติ</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($bookings as $booking)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $booking->user_name }}</td>
-                            <td>{{ $booking->room_name }}</td>
-                            <td>{{ date('m-d-Y', strtotime($booking->start_date)) }}</td>
-                            <td>{{ date('m-d-Y', strtotime($booking->end_date)) }}</td>
-                            <td>{{ date('H:i', strtotime($booking->start_time)) }}</td>
-                            <td>{{ date('H:i', strtotime($booking->end_time)) }}</td>
-                            <td>
-                                <button class="btn btn-sm btn-success btn-custom"
-                                    onclick="showSuccessAlert({{ $booking->id }})">✓</button>
-                                <button class="btn btn-sm btn-danger btn-custom"
-                                    onclick="showCancel({{ $booking->id }})">✗</button>
-                                <button class="btn btn-sm btn-primary btn-custom"
-                                    onclick="showDetail({{ $booking->id }})">รายละเอียด</button>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+        <div class="col-md-9 p-0">
+            <div class="container-fluid h-100">
+                <div class="mt-3">
+                    <div class="header d-flex align-items-center">
+                        <img src="{{ asset('storage/images/checkbox1.png') }}" alt="Logo"
+                            style="max-height: 40px; margin-right: 10px;">
+                        <h2 class="mb-0">อนุมัติคำขอจองห้อง</h2>
+                    </div>
+                    <div class="table-container" style="background-color: #ffffff;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>ชื่อผู้จอง</th>
+                                    <th>ชื่อห้อง</th>
+                                    <th>วันที่เข้าใช้</th>
+                                    <th>วันที่สิ้นสุด</th>
+                                    <th>เวลาเข้าใช้</th>
+                                    <th>เวลาสิ้นสุด</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($bookings as $booking)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $booking->user_name }}</td>
+                                        <td>{{ $booking->room_name }}</td>
+                                        <td>{{ date('m-d-Y', strtotime($booking->start_date)) }}</td>
+                                        <td>{{ date('m-d-Y', strtotime($booking->end_date)) }}</td>
+                                        <td>{{ date('H:i', strtotime($booking->start_time)) }}</td>
+                                        <td>{{ date('H:i', strtotime($booking->end_time)) }}</td>
+                                        <td>
+                                            <button class="btn btn-sm btn-success btn-custom"
+                                                onclick="showSuccessAlert({{ $booking->id }})">✓</button>
+                                            <button class="btn btn-sm btn-danger btn-custom"
+                                                onclick="showCancel({{ $booking->id }})">✗</button>
+                                            <button class="btn btn-sm btn-primary btn-custom"
+                                                onclick="showDetail({{ $booking->id }})">รายละเอียด</button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 <script>
     function showSuccessAlert() {
