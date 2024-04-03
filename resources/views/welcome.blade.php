@@ -7,6 +7,7 @@
     <title>อนุมัติคำขอจองห้อง</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="image" href="C:\xampp\htdocs\test_table\public\storage">
     <style>
         th,
         td {
@@ -14,6 +15,7 @@
         }
 
         .header {
+            background-image: url("{{ asset('storage/images/Rectangle 53 (1).png') }}");
             background-color: #0077b6;
             color: white;
             padding: 10px;
@@ -26,6 +28,10 @@
             border-radius: 5px;
             padding: 20px;
             margin-top: 20px;
+            max-height: 500px;
+            /* กำหนดความสูงสูงสุดของคอนเทนเนอร์ */
+            overflow-y: auto;
+            /* เพิ่มแถบเลื่อนด้านข้างเมื่อเนื้อหาเกินความสูงที่กำหนด */
         }
 
         table {
@@ -173,8 +179,9 @@
 
 <body>
     <div class="container mt-5">
-        <div class="header">
-            <h2 class="text-center mb-0">อนุมัติคำขอจองห้อง</h2>
+        <div class="header d-flex align-items-center">
+            <img src="{{ asset('storage/images/checkbox1.png') }}" alt="Logo" style="max-height: 40px; margin-right: 10px;">
+            <h2 class="mb-0">อนุมัติคำขอจองห้อง</h2>
         </div>
         <div class="table-container">
             <table>
