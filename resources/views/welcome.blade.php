@@ -265,8 +265,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $booking->user_name }}</td>
                                         <td>{{ $booking->room_name }}</td>
-                                        <td>{{ date('m-d-Y', strtotime($booking->start_date)) }}</td>
-                                        <td>{{ date('m-d-Y', strtotime($booking->end_date)) }}</td>
+                                        <td>{{ date('d/m/Y', strtotime($booking->start_date)) }}</td>
+                                        <td>{{ date('d/m/Y', strtotime($booking->end_date)) }}</td>
                                         <td>{{ date('H:i', strtotime($booking->start_time)) }}</td>
                                         <td>{{ date('H:i', strtotime($booking->end_time)) }}</td>
                                         <td>
@@ -294,14 +294,14 @@
             html: '<div style="display: flex; align-items: center;">' +
                 '<div style="flex: 1;">' +
                 '<img src="https://www.ananda.co.th/blog/thegenc/wp-content/uploads/2023/09/business-meeting-working-room-office-building-FI.jpg" style="max-width: 300px;">' +
-                '<p style="margin-top: 10px;">ห้อง G108</p>' +
+                '<p style="margin-top: 10px;">ห้อง Gt-200</p>' +
                 '</div>' +
                 '<div style="flex: 1; margin-left: 20px;">' +
-                '<p>ชื่อผู้จอง: นายกรณ์ พรหมนิเกตร</p>' +
-                '<p>วันที่จอง: 19/02/2567</p>' +
-                '<p>วันที่ใช้ห้อง: 21/02/2567</p>' +
-                '<p>ถึงวันที่: 22/02/2567</p>' +
-                '<p>เวลา: 13.00-17.00 น.</p>' +
+                '<p>ชื่อผู้จอง: ภาณุวิชญ์ จันทร์กลาง</p>' +
+                '<p>วันที่จอง: 03/04/2024</p>' +
+                '<p>วันที่ใช้ห้อง: 03/04/2024</p>' +
+                '<p>ถึงวันที่: 04/04/2024</p>' +
+                '<p>เวลา: 10:58-11:58 น.</p>' +
                 '<p>ขนาดของห้อง: เต็มห้อง</p>' +
                 '</div>' +
                 '</div>',
