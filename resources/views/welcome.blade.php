@@ -215,7 +215,7 @@
             <div class="bg-light sidebar h-100">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/">
+                        <a class="nav-link active" href="/ ">
                             <i class="fas fa-home"></i> หน้าหลัก
                         </a>
                     </li>
