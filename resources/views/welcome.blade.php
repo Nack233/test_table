@@ -10,6 +10,15 @@
     <link rel="image" href="C:\xampp\htdocs\test_table\public\storage">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-..." crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url('dist/css/bootstrap.min.css') }}">
+    <script src="{{ url('dist/js/bootstrap.min.js') }}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Noto+Sans+Thai:wght@100..900&display=swap"
+        rel="stylesheet">
+    <link rel='stylesheet'
+        href='https://cdn-uicons.flaticon.com/2.2.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
     <style>
         th,
         td {
@@ -205,7 +214,6 @@
         }
 
         //button
-
     </style>
 </head>
 
