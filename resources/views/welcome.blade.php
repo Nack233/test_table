@@ -39,9 +39,13 @@
             border-radius: 5px;
             padding: 20px;
             margin-top: 10px;
+            margin-left: 80px;
             /* เปลี่ยนจากเดิม 20px เป็น 10px */
             max-height: 500px;
-            overflow-y: auto;
+            /* จัดให้ตารางอยู่กึ่งกลาง */
+            max-width: 1000px;
+            /* กำหนดความกว้างสูงสุดของตาราง */
+            overflow-x: auto; /* เพิ่มคำสั่งนี้เพื่อให้สามารถเลื่อนดูตารางได้หากเนื้อที่ไม่พอ */
         }
 
         table {
@@ -192,25 +196,8 @@
         }
 
         //sidebar
-        .sidebar {
-            padding: 20px;
-        }
-
-        .sidebar .nav-link {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            color: #333;
-        }
-
-        .sidebar .nav-link:hover,
-        .sidebar .nav-link.active {
-            background-color: #007bff;
-            color: #fff;
-        }
-
-        .sidebar .nav-link i {
-            margin-right: 10px;
+        .navbar-nav .active {
+            color: red;
         }
 
         //button
@@ -218,82 +205,97 @@
 </head>
 
 <body style="background-color: #e3e2e2;">
-    <div class="row m-0" style="height: 100vh;">
-        <div class="col-md-3 p-0">
-            <div class="bg-light sidebar h-100">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/ ">
-                            <i class="fas fa-home"></i> หน้าหลัก
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-calendar-alt"></i> จองห้องประชุม
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-check-circle"></i> อนุมัติการจอง
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fas fa-cog"></i> ตั้งค่า
-                        </a>
-                    </li>
-                </ul>
+    <div class="row m-0" style="height: 10vh;">
+        <!-- Sidebar -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white"
+            style="width: 350; height: 100vh; background-color: #242038">
+            <!-- Sidebar content here -->
+            <a href="/"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto mx-auto text-white text-decoration-none">
+                <img src="logo_bmrs.jpg" class="img-fluid" alt="" width="73px" height="65.39px"
+                    style="border-radius: 15px" />
+                <span class="fs-5 lh-sm ms-3">ระบบจองห้องประชุม<br>หน่วยงานราชการ</span>
+            </a>
+            <hr class="invisible">
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="#" class="d-flex nav-link active align-items-center" aria-current="booking room">
+                        <i class="fi fi-sr-meeting-alt me-2" style="font-size: 30px"></i>
+                        จองห้องประชุม
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="d-flex nav-link text-white align-items-center" aria-current="track status">
+                        <i class="fi fi-sr-time-past me-2" style="font-size: 30px"></i>
+                        ติดตามสถานะการจอง
+                    </a>
+                </li>
+            </ul>
+            <hr>
+            <div class="d-flex align-items-center justify-content-between">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none"
+                    aria-expanded="false">
+                    <img src="https://media.discordapp.net/attachments/1209200207963758673/1224255943861080064/a8a6659eb448af110e0eb9cfb83e901d.png?ex=661cd432&is=660a5f32&hm=a4a235e24939438515f682e285e9e1fe9d10fb1ea91b0bf873690fee774c090b&=&format=webp&quality=lossless&width=628&height=585"
+                        alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong><u>เจ้าหน้าที่</u></strong>
+                </a>
+                <a href="{{ url('/') }}" class="nav-link text-white"><i class="fi fi-sr-sign-out-alt"
+                        style="font-size: 30"></i></a>
             </div>
         </div>
-        <div class="col-md-9 p-0">
-            <div class="container-fluid h-100">
-                <div class="mt-3">
-                    <div class="header d-flex align-items-center">
-                        <img src="{{ asset('storage/images/checkbox1.png') }}" alt="Logo"
-                            style="max-height: 40px; margin-right: 10px;">
-                        <h2 class="mb-0">อนุมัติคำขอจองห้อง</h2>
-                    </div>
-                    <div class="table-container" style="background-color: #ffffff;">
-                        <table>
-                            <thead>
+        <div class="d-flex flex-column flex-grow-1">
+            {{-- navbar --}}
+            <div class="d-flex bg-dark text-white align-items-center p-4 fs-3"
+                style="width: 80vw; height: 10%; background-image: linear-gradient(to right ,#1E1450 ,#1E3ACC); border-radius: 18px;">
+                <i class="fi fi-sr-meeting-alt me-4" style="font-size: 45px;"></i>
+                จองห้องประชุม
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 p-0 flex-grow-1 mx-auto">
+        <div class="container-fluid h-100">
+            <div class="mt-3">
+                <div class="table-container" style="background-color: #ffffff;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>ชื่อผู้จอง</th>
+                                <th>ชื่อห้อง</th>
+                                <th>วันที่เข้าใช้</th>
+                                <th>วันที่สิ้นสุด</th>
+                                <th>เวลาเข้าใช้</th>
+                                <th>เวลาสิ้นสุด</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($bookings as $booking)
                                 <tr>
-                                    <th>#</th>
-                                    <th>ชื่อผู้จอง</th>
-                                    <th>ชื่อห้อง</th>
-                                    <th>วันที่เข้าใช้</th>
-                                    <th>วันที่สิ้นสุด</th>
-                                    <th>เวลาเข้าใช้</th>
-                                    <th>เวลาสิ้นสุด</th>
-                                    <th> </th>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $booking->user_name }}</td>
+                                    <td>{{ $booking->room_name }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($booking->start_date)) }}</td>
+                                    <td>{{ date('d/m/Y', strtotime($booking->end_date)) }}</td>
+                                    <td>{{ date('H:i', strtotime($booking->start_time)) }}</td>
+                                    <td>{{ date('H:i', strtotime($booking->end_time)) }}</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-success btn-custom"
+                                            onclick="showSuccessAlert({{ $booking->id }})">✓</button>
+                                        <button class="btn btn-sm btn-danger btn-custom"
+                                            onclick="showCancel({{ $booking->id }})">✗</button>
+                                        <button class="btn btn-sm btn-primary btn-custom"
+                                            onclick="showDetail({{ $booking->id }})">รายละเอียด</button>
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($bookings as $booking)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $booking->user_name }}</td>
-                                        <td>{{ $booking->room_name }}</td>
-                                        <td>{{ date('d/m/Y', strtotime($booking->start_date)) }}</td>
-                                        <td>{{ date('d/m/Y', strtotime($booking->end_date)) }}</td>
-                                        <td>{{ date('H:i', strtotime($booking->start_time)) }}</td>
-                                        <td>{{ date('H:i', strtotime($booking->end_time)) }}</td>
-                                        <td>
-                                            <button class="btn btn-sm btn-success btn-custom"
-                                                onclick="showSuccessAlert({{ $booking->id }})">✓</button>
-                                            <button class="btn btn-sm btn-danger btn-custom"
-                                                onclick="showCancel({{ $booking->id }})">✗</button>
-                                            <button class="btn btn-sm btn-primary btn-custom"
-                                                onclick="showDetail({{ $booking->id }})">รายละเอียด</button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
+            </div>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 <script>
     function showSuccessAlert() {
